@@ -30,7 +30,7 @@ class Game:
 
 
             # fill background
-            self.window.fill(Color.BLACK.value)
+            self.window.fill(Color.WHITE.value)
 
             # draw game elements
             for elem in self.elements:
@@ -49,9 +49,10 @@ class Game:
 
 if __name__ == "__main__":
     game = Game(WINDOW_WIDTH, WINDOW_HEIGHT)
-    container = Container(game.window, 100, 50, 100, 75, 4)
+    container = Container(game.window, 50, 50, 30, 40, 4)
     container.stack.push(Color.BLUE)
     container.stack.push(Color.RED)
+    container.stack.push(Color.GREEN)
     container.stack.push(Color.GREEN)
     game.add_element(container)
     game.start()

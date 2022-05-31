@@ -13,10 +13,12 @@ class Stack:
         self.max_length = max_length
         self.elements = deque(maxlen=self.max_length)
 
-    def push(self, value: Color) -> None:
+    def push(self, value: Color) -> bool:
         """Add element to stack"""
         if len(self.elements) < self.max_length:
             self.elements.append(value)
+            return True
+        return False
 
     def pop(self) -> Optional[Color]:
         """Pop element from stack"""
@@ -50,7 +52,7 @@ class Container:
         self.rect = pygame.Rect(self.x, self.y, self.block_width, self.block_height * self.size)
 
     def draw(self) -> None:
-        for idx, color in enumerate(self.stack.elements):
+        for idx, color in enumerate(reversed(self.stack.elements)):
             pygame.draw.rect(
                 self.window,
                 color.value,
