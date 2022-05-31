@@ -1,13 +1,15 @@
 """Stack"""
 
 from collections import deque
-from typing import Optional, Callable
+from typing import Callable, Optional
 
 import pygame
 from color import Color
 
 
 class Stack:
+    """Dummy implementation stack"""
+
     def __init__(self, max_length: int = 4) -> None:
         """Init stack"""
         self.max_length = max_length
@@ -63,7 +65,6 @@ class Pile(Stack):
         self.size = size
         self.x = x
         self.y = y
-        self.stack = Stack(self.size)
         self.rect = pygame.Rect(self.x, self.y, self.block_width, self.block_height * self.size)
         self.activated = False
         self.callback = callback
@@ -71,7 +72,7 @@ class Pile(Stack):
 
     def draw(self) -> None:
         """Draw elements"""
-        for idx, color in enumerate(self.stack.elements):
+        for idx, color in enumerate(self.elements):
             pygame.draw.rect(
                 self.window,
                 color.value,
@@ -99,7 +100,7 @@ class Pile(Stack):
     @property
     def full(self) -> bool:
         """True if pile is full"""
-        return len(self.stack.elements) == self.size
+        return len(self.elements) == self.size
 
     def activate(self):
         """Activate pile"""
@@ -121,16 +122,16 @@ class Pile(Stack):
 
     def can_move(self, pile: "Pile") -> bool:
         """Check if we can move elements to another pile"""
-        return not pile.full and (pile.stack.empty or pile.stack.peek() == self.stack.peek())
+        return not pile.full and (pile.empty or pile.peek() == self.peek())
 
     def move(self, pile: "Pile"):
         """Move elements from one pile to another"""
-        color = self.stack.peek().value
-        available_cells = pile.size - len(pile.stack.elements)
+        color = self.peek().value
+        available_cells = pile.size - len(pile.elements)
         for _ in range(available_cells):
-            if self.stack.empty:
+            if self.empty:
                 return
-            if self.stack.peek().value != color:
+            if self.peek().value != color:
                 return
-            el = self.stack.pop()
-            pile.stack.push(el)
+            el = self.pop()
+            pile.push(el)

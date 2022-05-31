@@ -1,7 +1,7 @@
+import sys
+from typing import Optional
 
 import pygame
-import sys
-
 from color import Color
 from pile import Pile
 
@@ -9,8 +9,10 @@ WINDOW_WIDTH = 640
 WINDOW_HEIGHT = 480
 FRAMES_PER_SECOND = 30
 
+
 class Game:
     """Game class"""
+
     def __init__(self, width: int, height: int):
         pygame.init()
         self.WIDTH = width
@@ -18,7 +20,7 @@ class Game:
         self.window = pygame.display.set_mode((self.WIDTH, self.HEIGHT))
         self.clock = pygame.time.Clock()
         self.piles = []
-        self.active_idx = None
+        self.active_idx: Optional[int] = None
 
     def start(self):
         """Start game cycle"""
@@ -50,7 +52,8 @@ class Game:
         """Add element"""
         self.piles.append(element)
 
-    def set_active_elem_idx(self, _, activated_pile: Pile) -> None:
+    def activate_element(self, _, activated_pile: Pile) -> None:
+        """Activate element event callback"""
         for idx, pile in enumerate(self.piles):
             if pile is activated_pile:
                 if self.active_idx is not None:
@@ -67,20 +70,20 @@ class Game:
 if __name__ == "__main__":
     game = Game(WINDOW_WIDTH, WINDOW_HEIGHT)
 
-    pile1 = Pile(game.window, 50, 50, 30, 40, 4, callback=game.set_active_elem_idx)
-    pile1.stack.push(Color.BLUE)
-    pile1.stack.push(Color.RED)
-    pile1.stack.push(Color.GREEN)
-    pile1.stack.push(Color.GREEN)
+    pile1 = Pile(game.window, 50, 50, 30, 40, 4, callback=game.activate_element)
+    pile1.push(Color.BLUE)
+    pile1.push(Color.RED)
+    pile1.push(Color.GREEN)
+    pile1.push(Color.GREEN)
 
-    pile2 = Pile(game.window, 150, 50, 30, 40, 4, callback=game.set_active_elem_idx)
-    pile2.stack.push(Color.GREEN)
+    pile2 = Pile(game.window, 150, 50, 30, 40, 4, callback=game.activate_element)
+    pile2.push(Color.GREEN)
 
-    pile3 = Pile(game.window, 250, 50, 30, 40, 4, callback=game.set_active_elem_idx)
+    pile3 = Pile(game.window, 250, 50, 30, 40, 4, callback=game.activate_element)
 
-    pile4 = Pile(game.window, 350, 50, 30, 40, 4, callback=game.set_active_elem_idx)
-    pile4.stack.push(Color.RED)
-    pile4.stack.push(Color.GREEN)
+    pile4 = Pile(game.window, 350, 50, 30, 40, 4, callback=game.activate_element)
+    pile4.push(Color.RED)
+    pile4.push(Color.GREEN)
 
     piles = [
         pile1,
