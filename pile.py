@@ -124,14 +124,12 @@ class Pile(Stack):
         """Check if we can move elements to another pile"""
         return not pile.full and (pile.empty or pile.peek() == self.peek())
 
-    def move(self, pile: "Pile"):
+    def move(self, pile: "Pile") -> None:
         """Move elements from one pile to another"""
-        color = self.peek().value
-        available_cells = pile.size - len(pile.elements)
-        for _ in range(available_cells):
-            if self.empty:
+        color = self.peek()
+        if self.empty:
+            return
+        for _ in range(pile.size - len(pile.elements)):
+            if self.peek() != color:
                 return
-            if self.peek().value != color:
-                return
-            el = self.pop()
-            pile.push(el)
+            pile.push(self.pop())

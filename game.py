@@ -54,6 +54,8 @@ class Game:
 
     def activate_element(self, _, activated_pile: Pile) -> None:
         """Activate element event callback"""
+        if activated_pile.empty:
+            activated_pile.deactivate()
         for idx, pile in enumerate(self.piles):
             if pile is activated_pile:
                 if self.active_idx is not None:
