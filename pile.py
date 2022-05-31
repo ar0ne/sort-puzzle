@@ -39,7 +39,7 @@ class Stack:
             yield el
 
 
-class Pile:
+class Pile(Stack):
     """Container for elements"""
 
     def __init__(
@@ -62,8 +62,10 @@ class Pile:
         self.rect = pygame.Rect(self.x, self.y, self.block_width, self.block_height * self.size)
         self.activated = False
         self.callback = callback
+        super().__init__(self.size)
 
     def draw(self) -> None:
+        """Draw elements"""
         for idx, color in enumerate(self.stack.elements):
             pygame.draw.rect(
                 self.window,
@@ -77,30 +79,17 @@ class Pile:
                 0,
             )
         # draw border
-        if self.activated:
-            pygame.draw.rect(
-                self.window,
-                Color.PINK.value,
-                (
-                    self.x,
-                    self.y,
-                    self.block_width,
-                    self.block_height * self.size,
-                ),
-                2,
-            )
-        else:
-            pygame.draw.rect(
-                self.window,
-                Color.BLACK.value,
-                (
-                    self.x,
-                    self.y,
-                    self.block_width,
-                    self.block_height * self.size,
-                ),
-                2,
-            )
+        pygame.draw.rect(
+            self.window,
+            Color.PINK.value if self.activated else Color.BLACK.value,
+            (
+                self.x,
+                self.y,
+                self.block_width,
+                self.block_height * self.size,
+            ),
+            2,
+        )
 
     @property
     def full(self) -> bool:

@@ -50,13 +50,15 @@ class Game:
         """Add element"""
         self.piles.append(element)
 
-    def set_active_elem_idx(self, event, activated_pile: Pile) -> None:
+    def set_active_elem_idx(self, _, activated_pile: Pile) -> None:
         for idx, pile in enumerate(self.piles):
             if pile is activated_pile:
                 if self.active_idx is not None:
                     old_pile = self.piles[self.active_idx]
                     if old_pile.can_move(activated_pile):
                         old_pile.move(activated_pile)
+                        self.active_idx = None
+                        return
                 self.active_idx = idx
                 return
 
