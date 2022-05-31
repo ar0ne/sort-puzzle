@@ -4,6 +4,7 @@ from typing import Optional
 import pygame
 from color import Color
 from pile import Pile
+from puzzle import Puzzle
 
 WINDOW_WIDTH = 640
 WINDOW_HEIGHT = 480
@@ -73,29 +74,5 @@ class Game:
 
 if __name__ == "__main__":
     game = Game(WINDOW_WIDTH, WINDOW_HEIGHT)
-
-    pile1 = Pile(game.window, 50, 50, 30, 40, 4, callback=game.activate_element)
-    pile1.push(Color.BLUE)
-    pile1.push(Color.RED)
-    pile1.push(Color.GREEN)
-    pile1.push(Color.GREEN)
-
-    pile2 = Pile(game.window, 150, 50, 30, 40, 4, callback=game.activate_element)
-    pile2.push(Color.GREEN)
-
-    pile3 = Pile(game.window, 250, 50, 30, 40, 4, callback=game.activate_element)
-
-    pile4 = Pile(game.window, 350, 50, 30, 40, 4, callback=game.activate_element)
-    pile4.push(Color.RED)
-    pile4.push(Color.GREEN)
-
-    piles = [
-        pile1,
-        pile2,
-        pile3,
-        pile4,
-    ]
-    for pile in piles:
-        game.add_element(pile)
-
+    Puzzle.generate(game, 3, 4)
     game.start()
