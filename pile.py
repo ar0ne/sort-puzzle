@@ -32,6 +32,7 @@ class Stack:
 
     @property
     def empty(self) -> bool:
+        """True if stack is empty"""
         return not len(self.elements)
 
     def __iter__(self):
@@ -41,6 +42,9 @@ class Stack:
 
 class Pile(Stack):
     """Container for elements"""
+
+    NO_BORDER = 0
+    BORDER_WIDTH = 2
 
     def __init__(
         self,
@@ -52,6 +56,7 @@ class Pile(Stack):
         size: int,
         callback: Optional[Callable] = None,
     ) -> None:
+        """Init pile"""
         self.window = window
         self.block_width = width
         self.block_height = height
@@ -76,7 +81,7 @@ class Pile(Stack):
                     self.block_width,
                     self.block_height,
                 ),
-                0,
+                self.NO_BORDER,
             )
         # draw border
         pygame.draw.rect(
@@ -88,26 +93,29 @@ class Pile(Stack):
                 self.block_width,
                 self.block_height * self.size,
             ),
-            2,
+            self.BORDER_WIDTH,
         )
 
     @property
     def full(self) -> bool:
+        """True if pile is full"""
         return len(self.stack.elements) == self.size
 
     def activate(self):
+        """Activate pile"""
         self.activated = True
 
     def deactivate(self):
+        """Deactivate pile"""
         self.activated = False
 
     def handle_event(self, event) -> None:
         """Handle event"""
         if event.type == pygame.MOUSEBUTTONUP:
             if self.rect.collidepoint(event.pos):
+                self.activate()
                 if self.callback:
                     self.callback(event, self)
-                self.activate()
             else:
                 self.deactivate()
 
@@ -116,7 +124,7 @@ class Pile(Stack):
         return not pile.full and (pile.stack.empty or pile.stack.peek() == self.stack.peek())
 
     def move(self, pile: "Pile"):
-        """Move element from one pile to another"""
+        """Move elements from one pile to another"""
         color = self.stack.peek().value
         available_cells = pile.size - len(pile.stack.elements)
         for _ in range(available_cells):

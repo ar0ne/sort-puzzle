@@ -58,6 +58,7 @@ class Game:
                     if old_pile.can_move(activated_pile):
                         old_pile.move(activated_pile)
                         self.active_idx = None
+                        activated_pile.deactivate()
                         return
                 self.active_idx = idx
                 return
