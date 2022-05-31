@@ -52,18 +52,20 @@ class Game:
         """Add element"""
         self.piles.append(element)
 
-    def activate_element(self, _, activated_pile: Pile) -> None:
+    def activate_element(self, _, active_pile: Pile) -> None:
         """Activate element event callback"""
-        if activated_pile.empty:
-            activated_pile.deactivate()
+        if active_pile.empty:
+            # don't let activate empty pile
+            active_pile.deactivate()
         for idx, pile in enumerate(self.piles):
-            if pile is activated_pile:
+            if pile is active_pile:
                 if self.active_idx is not None:
-                    old_pile = self.piles[self.active_idx]
-                    if old_pile.can_move(activated_pile):
-                        old_pile.move(activated_pile)
+                    ex_active_pile = self.piles[self.active_idx]
+                    if ex_active_pile.can_merge(active_pile):
+                        ex_active_pile.merge(active_pile)
+                        # reset active index and deactivate last activation
                         self.active_idx = None
-                        activated_pile.deactivate()
+                        active_pile.deactivate()
                         return
                 self.active_idx = idx
                 return

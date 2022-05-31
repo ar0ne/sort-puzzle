@@ -120,11 +120,11 @@ class Pile(Stack):
             else:
                 self.deactivate()
 
-    def can_move(self, pile: "Pile") -> bool:
-        """Check if we can move elements to another pile"""
+    def can_merge(self, pile: "Pile") -> bool:
+        """Check if we can merge elements with another pile"""
         return not pile.full and (pile.empty or pile.peek() == self.peek())
 
-    def move(self, pile: "Pile") -> None:
+    def merge(self, pile: "Pile") -> None:
         """Move elements from one pile to another"""
         color = self.peek()
         if self.empty:
