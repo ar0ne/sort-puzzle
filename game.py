@@ -28,6 +28,9 @@ class Game:
                     pygame.quit()
                     sys.exit()
 
+                # handle events
+                for elem in self.elements:
+                    elem.handle_event(event)
 
             # fill background
             self.window.fill(Color.WHITE.value)
@@ -49,10 +52,16 @@ class Game:
 
 if __name__ == "__main__":
     game = Game(WINDOW_WIDTH, WINDOW_HEIGHT)
-    container = Container(game.window, 50, 50, 30, 40, 4)
-    container.stack.push(Color.BLUE)
-    container.stack.push(Color.RED)
-    container.stack.push(Color.GREEN)
-    container.stack.push(Color.GREEN)
-    game.add_element(container)
+    container1 = Container(game.window, 50, 50, 30, 40, 4)
+    container1.stack.push(Color.BLUE)
+    container1.stack.push(Color.RED)
+    container1.stack.push(Color.GREEN)
+    container1.stack.push(Color.GREEN)
+
+    container2 = Container(game.window, 150, 50, 30, 40, 4)
+    container2.stack.push(Color.GREEN)
+
+    game.add_element(container1)
+    game.add_element(container2)
+
     game.start()

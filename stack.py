@@ -50,15 +50,45 @@ class Container:
         self.y = y
         self.stack = Stack(self.size)
         self.rect = pygame.Rect(self.x, self.y, self.block_width, self.block_height * self.size)
+        self.activated = False
 
     def draw(self) -> None:
-        for idx, color in enumerate(reversed(self.stack.elements)):
+        for idx, color in enumerate(self.stack.elements):
             pygame.draw.rect(
                 self.window,
                 color.value,
-                (self.x,
-                self.y + idx * self.block_height,
-                self.block_width,
-                self.block_height),
-                0
+                (
+                    self.x,
+                    self.y + (self.size - idx - 1) * self.block_height,
+                    self.block_width,
+                    self.block_height,
+                ),
+                0,
             )
+        # draw border
+        if self.activated:
+            pygame.draw.rect(
+                self.window,
+                Color.PINK.value,
+                (
+                    self.x,
+                    self.y,
+                    self.block_width,
+                    self.block_height * self.size,
+                ),
+                2
+            )
+
+    def activate(self):
+        self.activated = True
+
+    def deactivate(self):
+        self.activated = False
+
+    def handle_event(self, event) -> None:
+        """Handle event"""
+        if event.type == pygame.MOUSEBUTTONUP:
+            if self.rect.collidepoint(event.pos):
+                self.activate()
+            else:
+                self.deactivate()
