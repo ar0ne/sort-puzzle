@@ -14,13 +14,13 @@ class Puzzle:
     def generate(game: "Game", num_groups: int = 5, group_size: int = 4) -> None:
         """Generate random puzzle"""
 
+        window_width = game.WIDTH
         x = 50
         y = 50
         width = 30
         height = 40
         x_offset = 100
         y_offset = group_size * height + 50
-        window_width = game.WIDTH
 
         # generate empty piles
         piles = []
@@ -44,11 +44,7 @@ class Puzzle:
             piles.append(pile)
 
         random_colors = list(set(Color.colors()))[:num_groups]
-        colors = [
-            Color[color]
-            for color in random_colors
-            for _ in range(group_size)
-        ]
+        colors = [Color[color] for color in random_colors for _ in range(group_size)]
         random.shuffle(colors)
 
         for group_idx in range(num_groups):
