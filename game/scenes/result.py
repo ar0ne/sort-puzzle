@@ -6,7 +6,13 @@ import sys
 import pygame
 import pygwidgets
 from ..color import Color
-from ..constants import PLAY_SCENE, RESULT_SCENE, RESULT_TITLE_TEXT, RESTART_BUTTON_TXT, EXIT_BUTTON_TXT
+from ..constants import (
+    PLAY_SCENE,
+    RESULT_SCENE,
+    RESULT_TITLE_TEXT,
+    RESTART_BUTTON_TXT,
+    EXIT_BUTTON_TXT,
+)
 from pyghelpers import Scene
 
 
@@ -30,7 +36,9 @@ class ResultScene(Scene):
         self.restart_button = pygwidgets.TextButton(
             self.window, (width / 2 - 55, height / 2), RESTART_BUTTON_TXT
         )
-        self.exit_button = pygwidgets.TextButton(self.window, (width / 2 - 55, 400), EXIT_BUTTON_TXT)
+        self.exit_button = pygwidgets.TextButton(
+            self.window, (width / 2 - 55, 400), EXIT_BUTTON_TXT
+        )
 
     def getSceneKey(self):
         """Get unique scene key"""

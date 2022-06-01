@@ -5,7 +5,14 @@ import pygwidgets
 from pyghelpers import Scene
 
 from ..color import Color
-from ..constants import GAME_SETTINGS, MENU_BUTTON_TXT, PLAY_SCENE, RESTART_BUTTON_TXT, RESULT_SCENE, SPLASH_SCENE
+from ..constants import (
+    GAME_SETTINGS,
+    MENU_BUTTON_TXT,
+    PLAY_SCENE,
+    RESTART_BUTTON_TXT,
+    RESULT_SCENE,
+    SPLASH_SCENE,
+)
 from ..game import Game
 from ..puzzle_generator import generate_simple_puzzle
 
@@ -51,6 +58,13 @@ class PlayScene(Scene):
         self.game = Game(self.window)
         num_groups, group_size = self.request(SPLASH_SCENE, GAME_SETTINGS)
         generate_simple_puzzle(self.game, num_groups, group_size)
+        if self.game.has_finished():
+            # ensure we didn't generate too simple puzzle
+            self.restart()
+
+    def restart(self) -> None:
+        """Restart the scene"""
+        self.goToScene(PLAY_SCENE)
 
     def draw(self) -> None:
         """Draw UI elements"""
