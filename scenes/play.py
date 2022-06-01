@@ -3,7 +3,7 @@ Play game scene
 """
 import pygwidgets
 from color import Color
-from constants import PLAY_SCENE
+from constants import PLAY_SCENE, RESULT_SCENE
 from game import Game
 from puzzle import PuzzleGenerator
 from pyghelpers import Scene
@@ -30,14 +30,15 @@ class PlayScene(Scene):
             # handle events
             for elem in self.game.get_piles():
                 elem.handle_event(event)
-
+            if self.game.has_finished():
+                self.goToScene(RESULT_SCENE)
             if self.restart_button.handleEvent(event):
                 self.goToScene(PLAY_SCENE)
 
     def enter(self, data) -> None:
         """Enter scene"""
         self.game = Game(self.window)
-        PuzzleGenerator.generate(self.game, 5, 4)
+        PuzzleGenerator.generate(self.game, 3, 3)
 
     def draw(self) -> None:
         """Draw UI elements"""

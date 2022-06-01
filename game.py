@@ -21,6 +21,19 @@ class Game:
         """Add element"""
         self._piles.append(element)
 
+    def has_finished(self) -> bool:
+        """True if nothing to solve more"""
+        for pile in self._piles:
+            if pile.empty:
+                continue
+            if pile.max_length != pile.size:
+                return False
+            color = pile._elements[0]
+            for elem in pile._elements:
+                if elem != color:
+                    return False
+        return True
+
     def activate_element(self, _, active_pile: Pile) -> None:
         """Activate element event callback"""
         if active_pile.empty:

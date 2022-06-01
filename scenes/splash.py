@@ -21,7 +21,7 @@ class SpashScene(Scene):
             GREETING,
             fontSize=50,
             textColor=Color.BLACK.value,
-            width=610,
+            width=400,
             justified="center",
         )
         self.go_to_play_button = pygwidgets.TextButton(self.window, (250, 100), PLAY_BUTTON_TEXT)

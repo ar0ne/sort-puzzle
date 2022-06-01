@@ -43,7 +43,7 @@ class PuzzleGenerator:
             )
             piles.append(pile)
 
-        random_colors = list(set(Color.colors()))[:num_groups]
+        random_colors = random.sample(Color.available(), num_groups)
         colors = [Color[color] for color in random_colors for _ in range(group_size)]
         random.shuffle(colors)
 

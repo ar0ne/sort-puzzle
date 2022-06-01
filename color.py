@@ -13,7 +13,6 @@ class Color(Enum):
     DEAP_SKY_BLUE = (0, 191, 255)
     GOLD = (255, 215, 0)
     GREEN = (0, 255, 0)
-    MAGENTA = (255, 0, 255)
     MAROON = (128, 0, 0)
     NAVY = (0, 0, 128)
     OLIVE = (128, 128, 0)
@@ -27,7 +26,7 @@ class Color(Enum):
     WHITE = (255, 255, 255)
 
     @classmethod
-    def colors(cls) -> List[str]:
+    def available(cls) -> List[str]:
         """Get available color names"""
-        excluded = map(lambda x: x.name, [Color.WHITE, Color.GOLD])
+        excluded = map(lambda x: x.name, [Color.BLACK, Color.WHITE, Color.GOLD])
         return list(filter(lambda n: n not in excluded, cls._member_names_))
