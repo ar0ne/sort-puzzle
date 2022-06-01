@@ -2,14 +2,20 @@
 Splash game scene
 """
 import pygwidgets
-from ..color import Color
-from ..constants import GAME_SETTINGS, PLAY_SCENE, SPLASH_SCENE
 from pyghelpers import Scene
 
-GREETING = "Sort all piles to solve the puzzle!"
-PLAY_BUTTON_TEXT = "Play"
-PILES = "Piles:"
-BLOCKS = "Blocks:"
+from ..color import Color
+from ..constants import (
+    BLOCKS_FIELD_TXT,
+    GAME_SETTINGS,
+    GAME_GREETING_TXT,
+    MINUS,
+    PILES_FIELD_TXT,
+    PLAY_BUTTON_TEXT,
+    PLAY_SCENE,
+    PLUS,
+    SPLASH_SCENE,
+)
 
 
 class SpashScene(Scene):
@@ -24,7 +30,7 @@ class SpashScene(Scene):
         self.message_field = pygwidgets.DisplayText(
             self.window,
             (0, 80),
-            GREETING,
+            GAME_GREETING_TXT,
             fontSize=50,
             textColor=Color.PINK.value,
             width=width,
@@ -38,7 +44,7 @@ class SpashScene(Scene):
         self.piles_field = pygwidgets.DisplayText(
             self.window,
             (50, 200),
-            PILES,
+            PILES_FIELD_TXT,
             fontSize=30,
             textColor=Color.WHEAT.value,
             width=100,
@@ -54,21 +60,21 @@ class SpashScene(Scene):
         self.piles_count_plus_button = pygwidgets.TextButton(
             self.window,
             (200, 197),
-            "+",
+            PLUS,
             width=25,
             height=25,
         )
         self.piles_count_minus_button = pygwidgets.TextButton(
             self.window,
             (230, 197),
-            "-",
+            MINUS,
             width=25,
             height=25,
         )
         self.blocks_field = pygwidgets.DisplayText(
             self.window,
             (50, 250),
-            BLOCKS,
+            BLOCKS_FIELD_TXT,
             fontSize=30,
             textColor=Color.WHEAT.value,
             width=100,
@@ -84,14 +90,14 @@ class SpashScene(Scene):
         self.blocks_count_plus_button = pygwidgets.TextButton(
             self.window,
             (200, 247),
-            "+",
+            PLUS,
             width=25,
             height=25,
         )
         self.blocks_count_minus_button = pygwidgets.TextButton(
             self.window,
             (230, 247),
-            "-",
+            MINUS,
             width=25,
             height=25,
         )

@@ -1,5 +1,17 @@
 """App constants"""
 
+BLOCKS_FIELD_TXT = "Blocks:"
+EXIT_BUTTON_TXT = "Exit"
+GAME_GREETING_TXT = "Sort all piles to solve the puzzle!"
+GAME_TITLE_TXT = "Sort puzzle game"
+MENU_BUTTON_TXT = "Menu"
+MINUS = "-"
+PILES_FIELD_TXT = "Piles:"
+PLAY_BUTTON_TEXT = "Play"
+PLUS = "+"
+RESTART_BUTTON_TXT = "Restart"
+RESULT_TITLE_TEXT = "Congratulations! You won!!!"
+
 PLAY_SCENE = "PLAY_SCENE"
 RESULT_SCENE = "RESULT_SCENE"
 SPLASH_SCENE = "SPLASH_SCENE"

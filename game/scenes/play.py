@@ -5,12 +5,9 @@ import pygwidgets
 from pyghelpers import Scene
 
 from ..color import Color
-from ..constants import GAME_SETTINGS, PLAY_SCENE, RESULT_SCENE, SPLASH_SCENE
+from ..constants import GAME_SETTINGS, MENU_BUTTON_TXT, PLAY_SCENE, RESTART_BUTTON_TXT, RESULT_SCENE, SPLASH_SCENE
 from ..game import Game
 from ..puzzle_generator import generate_simple_puzzle
-
-RESTART = "Restart"
-MENU = "Menu"
 
 
 class PlayScene(Scene):
@@ -24,12 +21,12 @@ class PlayScene(Scene):
         self.restart_button = pygwidgets.TextButton(
             self.window,
             (width / 7 * 2, int(self.window.get_height() * 0.88)),
-            RESTART,
+            RESTART_BUTTON_TXT,
         )
         self.menu_button = pygwidgets.TextButton(
             self.window,
             (width / 3 * 2, int(self.window.get_height() * 0.88)),
-            MENU,
+            MENU_BUTTON_TXT,
         )
 
     def getSceneKey(self) -> str:
