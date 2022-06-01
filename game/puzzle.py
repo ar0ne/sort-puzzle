@@ -1,11 +1,11 @@
 """
-Puzzle
+Puzzle generator
 """
 import math
 import random
 
-from color import Color
-from pile import Pile
+from .color import Color
+from .pile import Pile
 
 MAX_ROW_SIZE = 7
 

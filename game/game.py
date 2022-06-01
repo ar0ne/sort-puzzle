@@ -1,7 +1,10 @@
+"""
+Game logic
+"""
 from typing import Optional, List
 
-from color import Color
-from pile import Pile
+from .color import Color
+from .pile import Pile
 
 
 class Game:

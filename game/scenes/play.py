@@ -2,11 +2,12 @@
 Play game scene
 """
 import pygwidgets
-from color import Color
-from constants import PLAY_SCENE, RESULT_SCENE, SPLASH_SCENE, GAME_SETTINGS
-from game import Game
-from puzzle import PuzzleGenerator
 from pyghelpers import Scene
+
+from ..color import Color
+from ..constants import GAME_SETTINGS, PLAY_SCENE, RESULT_SCENE, SPLASH_SCENE
+from ..game import Game
+from ..puzzle import PuzzleGenerator
 
 RESTART = "Restart"
 MENU = "Menu"

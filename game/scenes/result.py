@@ -5,8 +5,8 @@ import sys
 
 import pygame
 import pygwidgets
-from color import Color
-from constants import PLAY_SCENE, RESULT_SCENE
+from ..color import Color
+from ..constants import PLAY_SCENE, RESULT_SCENE
 from pyghelpers import Scene
 
 TITLE = "Congratulations! You won!!!"

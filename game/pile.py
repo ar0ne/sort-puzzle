@@ -1,10 +1,11 @@
-"""Stack"""
+"""Pile"""
 
 from collections import deque
 from typing import Any, Callable, Optional
 
 import pygame
-from color import Color
+
+from .color import Color
 
 
 class Stack:

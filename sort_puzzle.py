@@ -1,9 +1,9 @@
 """Sort puzzle game"""
 import pygame
+from game.scenes.play import PlayScene
+from game.scenes.result import ResultScene
+from game.scenes.splash import SpashScene
 from pyghelpers import pyghelpers
-from scenes.play import PlayScene
-from scenes.result import ResultScene
-from scenes.splash import SpashScene
 
 WINDOW_WIDTH = 640
 WINDOW_HEIGHT = 480

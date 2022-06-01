@@ -2,8 +2,8 @@
 Splash game scene
 """
 import pygwidgets
-from color import Color
-from constants import GAME_SETTINGS, PLAY_SCENE, SPLASH_SCENE
+from ..color import Color
+from ..constants import GAME_SETTINGS, PLAY_SCENE, SPLASH_SCENE
 from pyghelpers import Scene
 
 GREETING = "Sort all piles to solve the puzzle!"
