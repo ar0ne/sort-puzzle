@@ -1,6 +1,5 @@
 """Color"""
 from enum import Enum
-from typing import List
 
 
 class Color(Enum):
@@ -24,9 +23,3 @@ class Color(Enum):
     TEAL = (0, 128, 128)
     WHEAT = (245, 222, 179)
     WHITE = (255, 255, 255)
-
-    @classmethod
-    def available(cls) -> List[str]:
-        """Get available color names"""
-        excluded = map(lambda x: x.name, [Color.BLACK, Color.WHITE, Color.GOLD])
-        return list(filter(lambda n: n not in excluded, cls._member_names_))

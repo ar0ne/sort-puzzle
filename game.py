@@ -1,5 +1,6 @@
 from typing import Optional, List
 
+from color import Color
 from pile import Pile
 
 
@@ -51,3 +52,9 @@ class Game:
                         return
                 self._active_idx = idx
                 return
+
+    def get_color_names_for_piles(self) -> List[str]:
+        """Get color names for piles"""
+        excluded = (Color.BLACK, Color.WHITE, Color.GOLD)
+        excluded_names = list(map(lambda c: c.name, excluded))
+        return list(filter(lambda n: n not in excluded_names, Color._member_names_))

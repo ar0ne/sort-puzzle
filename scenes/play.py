@@ -38,7 +38,7 @@ class PlayScene(Scene):
     def enter(self, data) -> None:
         """Enter scene"""
         self.game = Game(self.window)
-        PuzzleGenerator.generate(self.game, 3, 3)
+        PuzzleGenerator.generate(self.game, 9, 5)
 
     def draw(self) -> None:
         """Draw UI elements"""
