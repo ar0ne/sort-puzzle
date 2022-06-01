@@ -39,12 +39,13 @@ def generate_simple_puzzle(
     # generate empty piles
     piles = []
     for idx in range(count_piles):
-        pos_x = start_x + idx * x_offset
-        if idx >= row_size:
+
+        if idx < row_size:
+            pos_x = start_x + idx * x_offset
+            pos_y = start_y
+        else:
             pos_x = start_x + (idx - row_size) * x_offset
             pos_y = start_y + y_offset
-        else:
-            pos_y = start_y
 
         pile = Pile(
             game.window,
