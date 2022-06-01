@@ -1,12 +1,14 @@
 """
 Play game scene
 """
-from pyghelpers import Scene
-
+import pygwidgets
 from color import Color
 from constants import PLAY_SCENE
 from game import Game
 from puzzle import PuzzleGenerator
+from pyghelpers import Scene
+
+RESTART_BUTTON = "Restart"
 
 
 class PlayScene(Scene):
@@ -15,7 +17,8 @@ class PlayScene(Scene):
     def __init__(self, window) -> None:
         """Init play scene"""
         self.window = window
-        self.game = Game(window)
+        self.game = None
+        self.restart_button = pygwidgets.TextButton(self.window, (300, 420), RESTART_BUTTON)
 
     def getSceneKey(self) -> str:
         """Get unique scene key"""
@@ -28,13 +31,18 @@ class PlayScene(Scene):
             for elem in self.game.get_piles():
                 elem.handle_event(event)
 
+            if self.restart_button.handleEvent(event):
+                self.goToScene(PLAY_SCENE)
+
     def enter(self, data) -> None:
         """Enter scene"""
+        self.game = Game(self.window)
         PuzzleGenerator.generate(self.game, 5, 4)
 
     def draw(self) -> None:
         """Draw UI elements"""
         self.window.fill(Color.WHITE.value)
+        self.restart_button.draw()
 
         # draw game elements
         for elem in self.game.get_piles():
