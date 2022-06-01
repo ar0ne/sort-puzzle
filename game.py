@@ -74,5 +74,5 @@ class Game:
 
 if __name__ == "__main__":
     game = Game(WINDOW_WIDTH, WINDOW_HEIGHT)
-    Puzzle.generate(game, 3, 4)
+    Puzzle.generate(game, 5, 4)
     game.start()

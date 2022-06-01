@@ -31,13 +31,13 @@ class Puzzle:
                 group_size,
                 callback=game.activate_element,
             )
-            for idx in range(num_groups + 2)
+            for idx in range(num_groups + 1)
         ]
-        random_colors = list(set(Color.colors()))[:group_size]
+        random_colors = list(set(Color.colors()))[:num_groups]
         colors = [
             Color[color]
             for color in random_colors
-            for _ in range(num_groups)
+            for _ in range(group_size)
         ]
         random.shuffle(colors)
 
