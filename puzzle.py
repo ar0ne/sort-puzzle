@@ -7,14 +7,14 @@ from color import Color
 from pile import Pile
 
 
-class Puzzle:
+class PuzzleGenerator:
     """Puzzle class"""
 
     @staticmethod
     def generate(game: "Game", num_groups: int = 5, group_size: int = 4) -> None:
         """Generate random puzzle"""
 
-        window_width = game.WIDTH
+        window_width = game.window.get_width()
         x = 50
         y = 50
         width = 30
