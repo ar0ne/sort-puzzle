@@ -18,7 +18,12 @@ class PlayScene(Scene):
         """Init play scene"""
         self.window = window
         self.game = None
-        self.restart_button = pygwidgets.TextButton(self.window, (300, 420), RESTART_BUTTON)
+        width = self.window.get_width()
+        self.restart_button = pygwidgets.TextButton(
+            self.window,
+            (width / 2 - 55, int(self.window.get_height() * 0.88)),
+            RESTART_BUTTON,
+        )
 
     def getSceneKey(self) -> str:
         """Get unique scene key"""
@@ -38,11 +43,11 @@ class PlayScene(Scene):
     def enter(self, data) -> None:
         """Enter scene"""
         self.game = Game(self.window)
-        PuzzleGenerator.generate(self.game, 9, 5)
+        PuzzleGenerator.generate(self.game, 2, 5)
 
     def draw(self) -> None:
         """Draw UI elements"""
-        self.window.fill(Color.WHITE.value)
+        self.window.fill(Color.WHEAT.value)
         self.restart_button.draw()
 
         # draw game elements
