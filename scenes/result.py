@@ -10,8 +10,8 @@ from pyghelpers import Scene
 from color import Color
 from constants import RESULT_SCENE, PLAY_SCENE
 
-TITLE = "Hooray!"
-RESTART = "Restart"
+TITLE = "Congratulations! You won!!!"
+RESTART = "Start again"
 QUIT = "Exit"
 
 
@@ -21,17 +21,19 @@ class ResultScene(Scene):
     def __init__(self, window) -> None:
         """Init scene"""
         self.window = window
+        width = window.get_width()
+        height = window.get_height()
         self.title_text = pygwidgets.DisplayText(
             self.window,
-            (15, 25),
+            (0, 80),
             TITLE,
             fontSize=50,
             textColor=Color.BLUE_VIOLET.value,
-            width=400,
+            width=width,
             justified="center",
         )
-        self.restart_button = pygwidgets.TextButton(self.window, (300, 100), RESTART)
-        self.exit_button = pygwidgets.TextButton(self.window, (300, 400), QUIT)
+        self.restart_button = pygwidgets.TextButton(self.window, (width / 2 - 55, height / 2), RESTART)
+        self.exit_button = pygwidgets.TextButton(self.window, (width / 2 - 55, 400), QUIT)
 
     def getSceneKey(self):
         """Get unique scene key"""
@@ -39,7 +41,7 @@ class ResultScene(Scene):
 
     def draw(self) -> None:
         """Draw scene"""
-        self.window.fill(Color.RED.value)
+        self.window.fill(Color.GOLD.value)
         self.title_text.draw()
         self.restart_button.draw()
         self.exit_button.draw()

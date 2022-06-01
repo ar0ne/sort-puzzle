@@ -16,12 +16,9 @@ class PuzzleGenerator:
     def generate(game: "Game", num_groups: int = 5, group_size: int = 4) -> None:
         """Generate random puzzle"""
 
-        num_groups = 12
-        group_size = 5
-
-        window_width = game.window.get_width()  # 640px
-        window_height = game.window.get_height()  # 480px
-        bottom_offset = int(window_height * 0.1)  # 64px
+        window_width = game.window.get_width()
+        window_height = game.window.get_height()
+        bottom_offset = int(window_height * 0.1)
 
         count_piles = num_groups + 2
         row_size = MAX_ROW_SIZE if count_piles >= MAX_ROW_SIZE else count_piles

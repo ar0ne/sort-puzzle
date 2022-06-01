@@ -6,7 +6,7 @@ from color import Color
 from constants import PLAY_SCENE, SPLASH_SCENE
 from pyghelpers import Scene
 
-GREETING = "Hello world"
+GREETING = "Sort all piles to solve the puzzle!"
 PLAY_BUTTON_TEXT = "Play"
 
 
@@ -15,16 +15,22 @@ class SpashScene(Scene):
 
     def __init__(self, window):
         self.window = window
+        width = window.get_width()
+        height = window.get_height()
         self.message_field = pygwidgets.DisplayText(
             self.window,
-            (15, 25),
+            (0, 80),
             GREETING,
             fontSize=50,
-            textColor=Color.BLACK.value,
-            width=400,
+            textColor=Color.PINK.value,
+            width=width,
             justified="center",
         )
-        self.go_to_play_button = pygwidgets.TextButton(self.window, (250, 100), PLAY_BUTTON_TEXT)
+        self.go_to_play_button = pygwidgets.TextButton(
+            self.window,
+            (width / 2 - 55, height / 2),
+            PLAY_BUTTON_TEXT,
+        )
 
     def getSceneKey(self) -> str:
         """Get unique scene key"""
