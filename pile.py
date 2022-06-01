@@ -1,7 +1,7 @@
 """Stack"""
 
 from collections import deque
-from typing import Callable, Optional, Any
+from typing import Any, Callable, Optional
 
 import pygame
 from color import Color
@@ -10,37 +10,49 @@ from color import Color
 class Stack:
     """Simple stack"""
 
+    __slots__ = ("max_length", "_elements")
+
     def __init__(self, max_length: int = 4) -> None:
         """Init stack"""
         self.max_length = max_length
-        self.elements = deque(maxlen=self.max_length)
+        self._elements = deque(maxlen=self.max_length)
 
     def push(self, value: Any) -> bool:
         """Add element to stack"""
-        if len(self.elements) < self.max_length:
-            self.elements.append(value)
+        if self.size < self.max_length:
+            self._elements.append(value)
             return True
         return False
 
     def pop(self) -> Optional[Any]:
         """Pop element from stack"""
-        if self.elements:
-            return self.elements.pop()
+        if self._elements:
+            return self._elements.pop()
 
     def peek(self) -> Optional[Any]:
         """Peek top element"""
         if not self.empty:
-            return self.elements[-1]
+            return self._elements[-1]
 
     @property
     def empty(self) -> bool:
         """True if stack is empty"""
-        return not len(self.elements)
+        return not self.size
+
+    @property
+    def size(self) -> int:
+        """Get size of elements"""
+        return len(self._elements)
 
     @property
     def full(self) -> bool:
         """True if pile is full"""
-        return len(self.elements) == self.max_length
+        return self.size == self.max_length
+
+    @property
+    def elements(self) -> deque:
+        return self._elements
+
 
 class Pile(Stack):
     """Container for elements"""
@@ -129,7 +141,7 @@ class Pile(Stack):
         color = self.peek()
         if self.empty:
             return
-        for _ in range(pile.max_length - len(pile.elements)):
+        for _ in range(pile.max_length - pile.size):
             if self.peek() != color:
                 return
             pile.push(self.pop())

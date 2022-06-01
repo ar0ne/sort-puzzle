@@ -6,6 +6,8 @@ from pile import Pile
 class Game:
     """Game class"""
 
+    __slots__ = ("window", "_piles", "_active_idx")
+
     def __init__(self, window):
         self.window = window
         self._piles = []
