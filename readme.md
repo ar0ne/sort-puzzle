@@ -1,5 +1,7 @@
 # Sort puzzle game
 
+![puzzle](puzzle.png)
+
 ## how to use?
 
 ### Install dependencies:

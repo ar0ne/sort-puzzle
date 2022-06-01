@@ -12,6 +12,7 @@ FRAMES_PER_SECOND = 30
 
 pygame.init()
 window = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
+pygame.display.set_caption("Sort puzzle game")
 scenes = [
     SpashScene(window),
     PlayScene(window),

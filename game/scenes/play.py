@@ -7,7 +7,7 @@ from pyghelpers import Scene
 from ..color import Color
 from ..constants import GAME_SETTINGS, PLAY_SCENE, RESULT_SCENE, SPLASH_SCENE
 from ..game import Game
-from ..puzzle import PuzzleGenerator
+from ..puzzle_generator import generate_simple_puzzle
 
 RESTART = "Restart"
 MENU = "Menu"
@@ -53,7 +53,7 @@ class PlayScene(Scene):
         """Enter scene"""
         self.game = Game(self.window)
         num_groups, group_size = self.request(SPLASH_SCENE, GAME_SETTINGS)
-        PuzzleGenerator.generate(self.game, num_groups, group_size)
+        generate_simple_puzzle(self.game, num_groups, group_size)
 
     def draw(self) -> None:
         """Draw UI elements"""
