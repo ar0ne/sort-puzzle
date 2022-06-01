@@ -65,7 +65,13 @@ class Pile(Stack):
         self.size = size
         self.x = x
         self.y = y
-        self.rect = pygame.Rect(self.x, self.y, self.block_width, self.block_height * self.size)
+        self.padding = width // 2
+        self.rect = pygame.Rect(
+            self.x - self.padding,
+            self.y - self.padding,
+            self.block_width + 2 * self.padding,
+            self.block_height * self.size + 2 * self.padding,
+        )
         self.activated = False
         self.callback = callback
         super().__init__(self.size)
@@ -87,7 +93,7 @@ class Pile(Stack):
         # draw border
         pygame.draw.rect(
             self.window,
-            Color.PINK.value if self.activated else Color.BLACK.value,
+            Color.GOLD.value if self.activated else Color.BLACK.value,
             (
                 self.x,
                 self.y,

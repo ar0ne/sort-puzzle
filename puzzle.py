@@ -15,24 +15,34 @@ class Puzzle:
         """Generate random puzzle"""
 
         x = 50
-        x_offset = 100
         y = 50
         width = 30
         height = 40
+        x_offset = 100
+        y_offset = group_size * height + 50
+        window_width = game.WIDTH
 
         # generate empty piles
-        piles = [
-            Pile(
+        piles = []
+        for idx in range(num_groups + 2):
+            pos_x = x + idx * x_offset
+            if pos_x > window_width:
+                pos_x = x
+                pos_y = y + y_offset
+            else:
+                pos_y = y
+
+            pile = Pile(
                 game.window,
-                x + idx * x_offset,
-                y,
+                pos_x,
+                pos_y,
                 width,
                 height,
                 group_size,
                 callback=game.activate_element,
             )
-            for idx in range(num_groups + 1)
-        ]
+            piles.append(pile)
+
         random_colors = list(set(Color.colors()))[:num_groups]
         colors = [
             Color[color]
