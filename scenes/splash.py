@@ -126,7 +126,7 @@ class SpashScene(Scene):
                 self.piles_count = max(self.piles_count - 1, 2)
 
             if self.blocks_count_minus_button.handleEvent(event):
-                self.blocks_count = max(self.blocks_count - 1, 2)
+                self.blocks_count = max(self.blocks_count - 1, 3)
             elif self.blocks_count_plus_button.handleEvent(event):
                 self.blocks_count = min(self.blocks_count + 1, 11)
 
