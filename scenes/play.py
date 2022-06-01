@@ -3,7 +3,7 @@ Play game scene
 """
 import pygwidgets
 from color import Color
-from constants import PLAY_SCENE, RESULT_SCENE, SPLASH_SCENE
+from constants import PLAY_SCENE, RESULT_SCENE, SPLASH_SCENE, GAME_SETTINGS
 from game import Game
 from puzzle import PuzzleGenerator
 from pyghelpers import Scene
@@ -51,7 +51,8 @@ class PlayScene(Scene):
     def enter(self, data) -> None:
         """Enter scene"""
         self.game = Game(self.window)
-        PuzzleGenerator.generate(self.game, 3, 4)
+        num_groups, group_size = self.request(SPLASH_SCENE, GAME_SETTINGS)
+        PuzzleGenerator.generate(self.game, num_groups, group_size)
 
     def draw(self) -> None:
         """Draw UI elements"""

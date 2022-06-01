@@ -3,7 +3,7 @@ Splash game scene
 """
 import pygwidgets
 from color import Color
-from constants import PLAY_SCENE, SPLASH_SCENE
+from constants import GAME_SETTINGS, PLAY_SCENE, SPLASH_SCENE
 from pyghelpers import Scene
 
 GREETING = "Sort all piles to solve the puzzle!"
@@ -96,7 +96,6 @@ class SpashScene(Scene):
             height=25,
         )
 
-
     def getSceneKey(self) -> str:
         """Get unique scene key"""
         return SPLASH_SCENE
@@ -122,14 +121,18 @@ class SpashScene(Scene):
                 self.goToScene(PLAY_SCENE)
 
             if self.piles_count_plus_button.handleEvent(event):
-                self.piles_count += 1
+                self.piles_count = min(self.piles_count + 1, 12)
             elif self.piles_count_minus_button.handleEvent(event):
-                self.piles_count -= 1
+                self.piles_count = max(self.piles_count - 1, 2)
 
             if self.blocks_count_minus_button.handleEvent(event):
-                self.blocks_count -= 1
+                self.blocks_count = max(self.blocks_count - 1, 2)
             elif self.blocks_count_plus_button.handleEvent(event):
-                self.blocks_count += 1
+                self.blocks_count = min(self.blocks_count + 1, 11)
 
         self.piles_count_field.setText(self.piles_count)
         self.blocks_count_field.setText(self.blocks_count)
+
+    def respond(self, requestID):
+        if requestID == GAME_SETTINGS:
+            return (self.piles_count, self.blocks_count)
