@@ -7,8 +7,8 @@ from pyghelpers import Scene
 from ..color import Color
 from ..constants import (
     BLOCKS_FIELD_TXT,
-    GAME_SETTINGS,
     GAME_GREETING_TXT,
+    GAME_SETTINGS,
     MINUS,
     PILES_FIELD_TXT,
     PLAY_BUTTON_TEXT,

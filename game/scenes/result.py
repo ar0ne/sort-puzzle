@@ -5,15 +5,16 @@ import sys
 
 import pygame
 import pygwidgets
+from pyghelpers import Scene
+
 from ..color import Color
 from ..constants import (
+    EXIT_BUTTON_TXT,
     PLAY_SCENE,
+    RESTART_BUTTON_TXT,
     RESULT_SCENE,
     RESULT_TITLE_TEXT,
-    RESTART_BUTTON_TXT,
-    EXIT_BUTTON_TXT,
 )
-from pyghelpers import Scene
 
 
 class ResultScene(Scene):

@@ -1,7 +1,7 @@
 """
 Game logic
 """
-from typing import Optional, List
+from typing import List, Optional
 
 from .color import Color
 from .pile import Pile
